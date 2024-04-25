@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <header class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Feedback System</h1>
+      <nav>
+        <a href="#" id="surveys" class="btn">Surveys</a>
+        <a href="#" id="settings" class="btn">Account Settings</a>
+        <a href="#" id="logoutBtn" class="btn">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="dashboard-content py-12">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-8">Welcome to Your Dashboard</h2>
+      <p class="text-center text-gray-700 mb-8">Here you can submit your feedback and view your feedback history.</p>
+      <!-- Add your user dashboard content here -->
+    </div>
+  </section>
+
+  <footer class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Feedback System. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', function(event) {
+      event.preventDefault();
+      // Perform logout logic here (e.g., redirect to logout endpoint)
+      alert('You have been logged out.');
+      window.location.href = 'login.html'; // Redirect to the login page
+    });
+  </script>
+</body>
+</html>

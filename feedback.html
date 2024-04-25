@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+  /* Custom CSS for additional styling */
+  .feedback-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .emoji-feedback {
+    display: flex;
+    justify-content: space-between;
+  }
+  .emoji-feedback label {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .emoji-feedback label:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s ease-in-out;
+  }
+  .emoji-feedback input[type="radio"] {
+    display: none;
+  }
+  .emoji-feedback input[type="radio"] + img {
+    width: 50px;
+    height: 50px;
+  }
+</style>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto flex justify-center items-center">
+      <h1 class="text-2xl font-bold">Feedback System</h1>
+    </div>
+  </header>
+
+  <section class="feedback-container py-8">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold mb-8">Feedback Form</h2>
+      <!-- Feedback Form -->
+      <form id="feedbackForm" class="max-w-md mx-auto">
+        <div class="mb-4">
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required><br>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required>
+          <label for="feedback" class="block text-gray-700 font-bold mb-2">Your Feedback</label>
+          <textarea id="feedback" name="feedback" rows="5" placeholder="Enter your feedback" class="input-field resize-none" required></textarea>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2">Select Emoji Feedback</label>
+          <div class="emoji-feedback">
+            <label>
+              <input type="radio" name="emoji" value="happy">
+              <img src="https://emojicdn.elk.sh/😊" alt="Happy Emoji">
+            </label>
+            <label>
+              <input type="radio" name="emoji" value="neutral">
+              <img src="https://emojicdn.elk.sh/😐" alt="Neutral Emoji">
+            </label>
+            <label>
+              <input type="radio" name="emoji" value="sad">
+              <img src="https://emojicdn.elk.sh/😢" alt="Sad Emoji">
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary w-full">Submit Feedback</button>
+      </form>
+
+      <!-- Existing Feedback (Sample) -->
+      <div class="mt-8">
+        <h2 class="text-3xl font-semibold mb-4">Existing Feedback</h2>
+        <ul class="divide-y divide-gray-300">
+          <!-- Sample Feedback Item (Replace with dynamic content) -->
+          <li class="py-4">
+            <p class="text-lg font-semibold">Feedback Title</p>
+            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu risus enim.</p>
+          </li>
+          <!-- End of Sample Feedback Item -->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Feedback System. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sample JavaScript for handling feedback submission
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      const feedback = document.getElementById('feedback').value;
+      const emoji = document.querySelector('input[name="emoji"]:checked').value;
+      // Perform logic to submit feedback (e.g., send data to server)
+      // For demonstration, simply log feedback and selected emoji to console
+      console.log('Feedback submitted:', feedback);
+      console.log('Selected Emoji:', emoji);
+      // Clear the feedback textarea after submission
+      document.getElementById('feedback').value = '';
+      // Optional: Display a success message or perform other actions
+      alert('Thank you for your feedback!');
+    });
+  </script>
+</body>
+</html>

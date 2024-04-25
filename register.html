@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+  .input-label {
+    font-weight: bold;
+  }
+
+  .generate-btn {
+    font-weight: bold;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .generate-btn:hover {
+    background-color: #45a049;
+  }
+
+  .error-message {
+    color: red;
+  }
+
+  .password-strength {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+</style>
+<script>
+  function generatePassword() {
+    const length = 12; // Change the length of the generated password as needed
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+="; // Characters to include in the password
+    let password = "";
+    for (let i = 0; i < length; ++i) {
+      password += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    document.getElementById("password").value = password;
+    document.getElementById("confirmPassword").value = password;
+  }
+
+  function validateUsername() {
+    const username = document.getElementById('username').value;
+    const errorMessage = document.getElementById('errorMessage');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(username) && !username.trim()) {
+      errorMessage.textContent = "Please enter a valid email address or name";
+      return false;
+    } else {
+      errorMessage.textContent = "";
+      return true;
+    }
+  }
+
+  function validatePassword() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const errorMessage = document.getElementById('errorMessage');
+    const passwordStrength = document.getElementById('passwordStrength');
+    
+    if (password !== confirmPassword) {
+      errorMessage.textContent = "Passwords do not match";
+      return false;
+    } else if (!isStrongPassword(password)) {
+      errorMessage.textContent = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character";
+      passwordStrength.textContent = "";
+      return false;
+    } else {
+      errorMessage.textContent = "";
+      passwordStrength.textContent = "Strong password";
+      return true;
+    }
+  }
+
+  function isStrongPassword(password) {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_-])[A-Za-z\d!@#$%^&*()_-]{8,}$/;
+    return regex.test(password);
+  }
+
+  function registerUser(event) {
+    event.preventDefault();
+    if (validateUsername() && validatePassword()) {
+      // Perform registration logic here (e.g., send data to server)
+      alert("Registration successful. Redirecting to login page...");
+      window.location.href = "login.html"; // Redirect to the login page
+    }
+  }
+</script>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto flex justify-center items-center">
+      <h1 class="text-2xl font-bold">Feedback System</h1>
+    </div>
+  </header>
+
+  <section class="register-content py-12">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-8">Register</h2>
+      <form id="registerForm" class="max-w-md mx-auto" onsubmit="registerUser(event)">
+        <div class="mb-4">
+          <label for="username" class="input-label block text-gray-700">Username</label>
+          <input type="text" id="username" name="username" placeholder="Username" class="input-field" required>
+        </div>
+        <div class="mb-4">
+          <label for="email" class="input-label block text-gray-700">Email</label>
+          <input type="text" id="email" name="email" placeholder="Enter your email address" class="input-field" required>
+        </div>
+        <div class="mb-4">
+          <label for="password" class="input-label block text-gray-700">Password</label>
+          <div class="relative">
+            <input type="password" id="password" name="password" placeholder="Enter your password" class="input-field" required>
+            <button type="button" class="generate-btn absolute top-0 right-0 mt-2 mr-4 focus:outline-none" onclick="generatePassword()">
+              Generate
+            </button>
+          </div>
+          <p id="passwordStrength" class="password-strength"></p>
+        </div>
+        <div class="mb-2">
+          <label for="confirmPassword" class="input-label block text-gray-700">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" class="input-field" required>
+        </div>
+        <p id="errorMessage" class="error-message"></p>
+        <button type="submit" class="btn-primary w-full">Register</button>
+      </form>
+      <p class="text-center mt-4">Already have an account? <a href="login.html" class="text-blue-500">Login here</a>.</p>
+    </div>
+  </section>
+
+  <footer class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Feedback System. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+

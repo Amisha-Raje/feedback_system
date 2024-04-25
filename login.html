@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+  /* Custom CSS for additional styling */
+  .input-field {
+    border-color: #ddd;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: #4a90e2;
+  }
+  .error-message {
+    color: red;
+  }
+</style>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto flex justify-center items-center">
+      <h1 class="text-2xl font-bold">Feedback System</h1>
+    </div>
+  </header>
+
+  <section class="login-content py-12">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-8">Login</h2>
+      <form id="loginForm" class="max-w-md mx-auto" onsubmit="handleLogin(event)">
+        <div class="mb-4">
+          <label for="username" class="block text-gray-700 font-bold">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" class="input-field" required>
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 font-bold">Password</label>
+          <div class="relative">
+            <input type="password" id="password" name="password" placeholder="Enter your password" class="input-field" required>
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 px-3 py-2 text-gray-600 focus:outline-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 00-7.072 7.072l7.072-7.072zM12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="mb-4">
+          <input type="checkbox" id="showPassword" class="mr-2" onclick="togglePasswordVisibility()">
+          <label for="showPassword" class="text-gray-700">Show Password</label>
+        </div>
+        <button type="submit" class="btn-primary w-full" id="loginButton">Login</button>
+      </form>
+      <p id="errorMessage" class="text-center mt-4 error-message"></p>
+      <p class="text-center mt-4">Don't have an account? <a href="register.html" class="text-blue-500">Register here</a>.</p>
+    </div>
+  </section>
+
+  <footer class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Feedback System. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault(); // Prevent form submission
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      // Perform authentication logic (e.g., send data to server for validation)
+      // For demonstration, redirecting to feedback page after successful login
+      if (username === 'user' && password === 'password') {
+        window.location.href = 'feedback.html'; // Replace 'feedback.html' with the actual feedback page URL
+      } else {
+        document.getElementById('errorMessage').textContent = 'Invalid username or password';
+      }
+    }
+
+    function togglePasswordVisibility() {
+      const passwordField = document.getElementById('password');
+      const showPasswordCheckbox = document.getElementById('showPassword');
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+      } else {
+        passwordField.type = 'password';
+      }
+      showPasswordCheckbox.checked = !showPasswordCheckbox.checked;
+    }
+  </script>
+</body>
+</html>

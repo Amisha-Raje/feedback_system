@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback System</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<script>
+  function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    alert(`Username: ${username}, Password: ${password}`);
+    // You can perform further actions here, such as sending the data to a server for authentication
+  }
+</script>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Feedback System</h1>
+      <nav>
+        <a href="login.html" class="btn">Login/Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="main-content py-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-8">Welcome to Feedback System</h2>
+      <div class="main-image">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.XV6G4ZhplfUb9o-S7KanzQHaDt&pid=Api&rs=1&c=1&qlt=95&w=248&h=124" alt="Feedback Image" class="rounded-lg shadow-md mx-auto max-w-70px width-70px">
+      </div>
+      <form id="loginForm" class="max-w-md mx-auto mt-8" onsubmit="handleLogin(event)">
+        <div class="mb-4">
+          <label for="username" class="block text-gray-700">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" class="input-field" required>
+        </div>
+        <div class="mb-8">
+          <label for="password" class="block text-gray-700">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" class="input-field" required>
+        </div>
+        <button type="submit" class="btn-primary w-full">Login</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-blue-500 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Feedback System. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+
